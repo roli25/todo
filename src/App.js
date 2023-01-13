@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import Header from "./Components/Header";
-import Form from "./Components/Form";
-import TodosList from "./Components/TodosList";
 import "./App.css";
+import Form from "./Components/Form";
+import Header from "./Components/Header";
+import TodosList from "./Components/TodosList";
 //const TodosList = React.lazy(() => import("./Components/TodosList"));
 
 const App = () => {
-  const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [editTodo, setEditTodo] = useState(null);
+
+  const addTodo = (todo) => setTodos([...todos, todo]);
+
+  const updateTodo = (udpatedTodo) =>
+    setTodos([
+      ...todos.map((todo) => (todo.id === udpatedTodo.id ? udpatedTodo : todo)),
+    ]);
+
   return (
     <div className="container">
       <div className="app-wrapper">
@@ -16,14 +23,7 @@ const App = () => {
           <Header />
         </div>
         <div>
-          <Form
-            input={input}
-            setInput={setInput}
-            todos={todos}
-            setTodos={setTodos}
-            editTodo={editTodo}
-            setEditTodo={setEditTodo}
-          />
+          <Form onAdd={addTodo} onUpdate={updateTodo} editTodo={editTodo} />
         </div>
         <div>
           <TodosList

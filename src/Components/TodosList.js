@@ -35,7 +35,7 @@ const TodosList = ({ todos, setTodos, setEditTodo }) => {
             </button>
             <button
               className="button-edit task-button"
-              onclick={() => handleEdit(todo)}
+              onClick={() => handleEdit(todo)}
             >
               <i className="fa fa-edit"></i>
             </button>
